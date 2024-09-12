@@ -10,6 +10,7 @@ public class Variable01 {
 		System.out.println(speed);
 		
 		System.out.println(speed + " " + days);
+	
 		
 	}
 
