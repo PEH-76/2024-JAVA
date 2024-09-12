@@ -27,7 +27,7 @@ public class DataType02 {
 		boolean t = true;//true, false는 소문자로만 지정됨
 		boolean fa = false;
 
-		System.out.println(t);
+		System.out.println(t);//문자열 아니고 정해진 값, 1비트짜리 값
 		System.out.println(fa);
 		
 		
