@@ -7,7 +7,7 @@ public class PrintFormatString {
 		int price = 800;
 		double weight = 0.12;
 		boolean discounted = false;
-		System.out.printf("상품: %s 가격: %d원 무게: %f 할인여부: %b", item, price, weight, discounted);
+		System.out.printf("상품: %s 가격: %d원 무게: %.2fkg 할인여부: %b", item, price, weight, discounted);
 		//문자열 s, 정수 d, 실수 f, 참거짓 b
 	}
 
