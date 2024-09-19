@@ -19,7 +19,8 @@ public class SumDigits_Improv {
 		int digit, DigitSum;
 		DigitSum = num % 10;
 		for(digit = 10; num / digit == 0; digit *= 10) {
-			DigitSum += num / digit;
+			for()
+				DigitSum += num / digit;
 		}
 		System.out.printf("각 자리 숫자의 합은: %d입니다.", DigitSum);
 		
