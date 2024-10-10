@@ -7,6 +7,7 @@ public class Study_1 {
 			for(int die_2 = 1; die_2 <= 6; die_2 ++) {
 				if(die_1 + die_2 == 10) {
 					System.out.printf("(%d, %d)\n", die_1, die_2);
+					
 				}
 			}
 		}
