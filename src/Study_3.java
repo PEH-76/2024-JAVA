@@ -13,6 +13,7 @@ public class Study_3 {
 			System.out.print("두 양의 정수를 입력하세요.: ");
 			double num_1 = input.nextDouble();
 			double num_2 = input.nextDouble();
+			
 			if(num_1 >= num_2) {
 				System.out.println("첫 번째 정수는 두 번째 정수보다 작아야 합니다.");
 			}

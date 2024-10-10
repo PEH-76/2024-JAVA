@@ -8,6 +8,7 @@ public class Loop01 {
 		
 		int sum = 0;
 		int time;
+		
 		System.out.println("5개의 숫자를 입력하세요.");
 		
 		for(time = 0; time < 5; time ++) {

@@ -8,6 +8,7 @@ public class Loop02 {
 		
 		int number;
 		int loopQ = 1;
+		
 		while(loopQ == 1) {
 			System.out.println("숫자를 입력하세요.");
 			

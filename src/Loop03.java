@@ -5,6 +5,7 @@ public class Loop03 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
+		
 		int number;
 		int sum = 0;
 		
