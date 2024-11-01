@@ -1,4 +1,4 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <string.h>
@@ -147,7 +147,7 @@ void nc_write_header(float set_x, float set_y, float set_z, float feed_rate) {
 	fprintf(fnc, "G21 (mm)\n"); //meteric
 	fprintf(fnc, "G90 (absolute)\n"); //absolute coordinate
 	fprintf(fnc, "F%.3f (feed rate)\n", feed_rate);//공구 현위치를 공작물 좌표계 좌표값
-	fprintf(fnc, "G92 X%.3f Y%.4f Z%.3f (Set current Tool Position in the active WCS\n", set_x, set_y, set_z);
+	fprintf(fnc, "G92 X%.3f Y%.4f Z%.3f (Set current Tool Position in the active WCS)\n", set_x, set_y, set_z);
 	cpx = set_x;
 	cpy = set_y;
 	cpz = set_z;
@@ -162,13 +162,10 @@ void nc_write_tail(void) {
 	fprintf(fnc, "M30 (Program stop and rewind)\n");
 }
 
-
 void nc_retract_moveto(float x, float y, float z) {
 	if (fabs(x - cpx) > EQZ || fabs(y - cpy) > EQZ || fabs(z - cpz) > EQZ) {
 		nc_write_g_01(0, cpx, cpy, rz);
 		nc_write_g_01(0, x, y, rz); 
-		nc_write_g_01(1, x, y, rz);
+		nc_write_g_01(1, x, y, z);
 	}
 }
-
-// NC TEST //
