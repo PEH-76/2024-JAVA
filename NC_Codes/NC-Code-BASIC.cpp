@@ -157,6 +157,12 @@ void nc_write_header(float set_x, float set_y, float set_z, float feed_rate) {
 
 }
 
+void nc_write_tail(void) {
+	fprintf(fnc, "M05 (Spindle Off)\n");
+	fprintf(fnc, "M30 (Program stop and rewind)\n");
+}
+
+
 void nc_retract_moveto(float x, float y, float z) {
 	if (fabs(x - cpx) > EQZ || fabs(y - cpy) > EQZ || fabs(z - cpz) > EQZ) {
 		nc_write_g_01(0, cpx, cpy, rz);
