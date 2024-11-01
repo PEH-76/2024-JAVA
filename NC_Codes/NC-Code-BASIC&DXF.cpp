@@ -255,35 +255,3 @@ void read_dxf(char const* fname) {
 }
 
 // NC TEST //
-
-void nc_test_me(void) {
-	float z = -0.5; // 가공 위치
-	float yc = 1.0;
-
-	nc_wopen("me.nc");
-	nc_write_header(0, 0, rz, 100);
-	nc_write_g_01(1, 0, 0, z);
-	nc_write_g_01(1, 0, yc, z);
-	nc_write_g_23(2, 1, yc, z, 0.5, 0, 0);
-	nc_write_g_01(1, 1, 0, z);
-	nc_retract_moveto(1, yc, z);
-	nc_write_g_23(2, 2, yc, z, 0.5, 0, 0);
-	nc_write_g_01(1, 2, 0, z);
-
-	nc_retract_moveto(3, yc, z);
-	nc_write_g_01(1, 4, yc, z);
-	nc_write_g_23(3, 3, yc, z, -0.5, 0, 0);
-	nc_write_g_01(1, 3, 0.5, z);
-	nc_write_g_23(3, 4, 0.5, z, 0.5, 0, 0);
-
-	nc_retract_moveto(0, 0, rz);
-	nc_write_tail();
-	nc_wclose();
-	getchar();
-	
-}
-
-int main(void) {
-	nc_test_me();
-	return 0;
-}
