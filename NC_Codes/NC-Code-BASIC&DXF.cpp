@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -18,6 +19,10 @@ unsigned char modal_g01 = NSET;
 // NC CODE GEN.
 void nc_wopen(char const* fname) {
 	fnc = fopen(fname, "w");
+	if (fnc == nullptr) {
+		printf("Error: Failed to open file '%s' for writing.\n", fname);
+		exit(1);
+	}
 }
 
 void nc_wclose(void) {
@@ -176,6 +181,10 @@ FILE* fd;
 
 void open_dxf(char const* dxfile) {
 	fd = fopen(dxfile, "r");
+	if (fd == nullptr) {
+		printf("Error: Failed to open DXF file '%s' for reading.\n", dxfile);
+		exit(1); // 프로그램 종료
+	}
 }
 
 void close_dxf(void) {
@@ -184,7 +193,7 @@ void close_dxf(void) {
 
 void nc_write_line(float sx, float sy, float sz, float ex, float ey, float ez) {
 	nc_retract_moveto(sx, sy, sz);
-	nc_write_g_01(1, ez, ey, ez);
+	nc_write_g_01(1, ex, ey, ez);
 }
 
 void process_line(void) {
@@ -256,3 +265,15 @@ void read_dxf(char const* fname) {
 }
 
 // NC TEST //
+
+void nc_test_name(void) {
+	nc_wopen("Drawing3.nc");
+	nc_write_header(0, 0, rz, 100);
+	read_dxf("Drawing3.dxf");
+	nc_write_tail();
+	nc_wclose();
+}
+
+void main(void) {
+	nc_test_name();
+}
