@@ -1,4 +1,4 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <string.h>
@@ -165,7 +165,7 @@ void nc_write_tail(void) {
 void nc_retract_moveto(float x, float y, float z) {
 	if (fabs(x - cpx) > EQZ || fabs(y - cpy) > EQZ || fabs(z - cpz) > EQZ) {
 		nc_write_g_01(0, cpx, cpy, rz);
-		nc_write_g_01(0, x, y, rz); 
+		nc_write_g_01(0, x, y, rz);
 		nc_write_g_01(1, x, y, z);
 	}
 }
@@ -204,16 +204,17 @@ void nc_write_circle(float cx, float cy, float cz, float r) {
 	nc_retract_moveto(cx, cy - r, cz);
 	fprintf(fnc, "G03 J%.3f\n", r); //원호 보간
 	cpx = cx;
-	cpy = cy;
+	cpy = cy - r;
 	cpz = cz;
 }
 
 void nc_write_arc(float cx, float cy, float cz, float r, float sang, float eang) {
-	double ex, ey, sx, sy;
-	ex = (double)cx + r * cos(eang * 3.1415926535 / 180.);
-	ey = (double)cy + r * sin(eang * 3.1415926535 / 180.);
-	sx = (double)cx + r * cos(sang * 3.1415926535 / 180.);
-	sy = (double)cy + r * sin(sang * 3.1415926535 / 180.);
+	double ex, ey;
+	double sx, sy;
+	ex = (double)cx + r * cos(eang * 3.141592 / 180.);
+	ey = (double)cy + r * sin(eang * 3.141592 / 180.);
+	sx = (double)cx + r * cos(sang * 3.141592 / 180.);
+	sy = (double)cy + r * sin(sang * 3.141592 / 180.);
 
 	nc_retract_moveto((float)sx, (float)sy, (float)cz);
 	nc_write_g_23(3, (float)ex, (float)ey, cz, cx - (float)sx, cy - (float)sy, cz);
@@ -239,7 +240,7 @@ void process_circle(void) {
 
 void dxf_read(void) {
 	char str[300];
-	while (10)
+	while (1)
 	{
 		fscanf(fd, "%s\n", str);
 		if (strcmp(str, "AcDbLine") == 0) process_line();
