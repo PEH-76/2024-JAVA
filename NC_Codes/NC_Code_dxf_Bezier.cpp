@@ -6,7 +6,6 @@
 #include <stdlib.h>
 //#include "nc.extern.h"
 
-//bezier
 
 #define TRUE 1
 #define FALSE 0
@@ -358,3 +357,36 @@ void bezier_offset(double u, double r, double up[], int right, double* op) {
 }
 
 // NC TEST //
+
+void bezier_test(void) {
+	float rz = 5.0;
+	double p0[] = { 0., 0., 0. }, p1[]{ 0., 10., 0. }, p2[] = { 0., 20., 0. }, up[] = { 0., 0., 1. };
+	double op0[3], op1[3], op2[3];
+	double u, p[3], pu[3];
+	float r;
+	bezier_clear_pt();
+	bezier_add_pt(10., 0., 0.);
+	bezier_add_pt(10., 10., 0.);
+	bezier_add_pt(0., 10., 0.);
+	bezier_add_pt(0., 0., 0.);
+
+	nc_wopen("bezier.nc");
+	nc_write_header(0, 0, rz, 100);
+
+	for (r = -5.; r <= 5.01; r += 5.0) {
+		for (u = 0.; u <= 1.005; u += 0.01) {
+			bezier_offset(u, r, up, OFFSET_RIGHT, p);
+			if (u == 0.0) nc_retract_moveto((float)p[0], (float)p[1], rz);
+			nc_write_g_01(1, (float)p[0], (float)p[1], (float)p[2]);
+		}
+
+	}
+	nc_retract_moveto(0, 0, rz);
+	nc_write_tail();
+	nc_wclose();
+}
+
+void main(void)
+{
+	bezier_test();
+}
