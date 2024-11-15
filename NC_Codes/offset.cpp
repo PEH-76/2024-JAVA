@@ -50,7 +50,7 @@ double dot_product(double a[], double b[]) {
 void x_line(double p[], double u[], double q[], double v[], double* x) {
 	double s, t, xp[3], xq[3];
 	double ucp[3], ucv[3], vcu[3], vcq[3], pmq[3], qmp[3];
-	double tn[3], tdn[3];
+	//double tn[3], tdn[3];
 	int i;
 
 	for (i = 0; i < 3; i++) {
